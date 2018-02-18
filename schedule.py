@@ -1,47 +1,9 @@
-def parse_minutes(time_str):
-    h, m = time_str[:-3].split(':')
-    if(time_str[-2:] == "PM"):
-        int(h) * 60 + int(m) + 720
-    else:
-        int(h) * 60 + int(m)
-
-
-def parse_time(time_str, days):
-    times = []
-    dayInMinutes = 1440
-    dayDict = {
-            "M": 0,
-            "T": dayInMinutes,
-            "W": dayInMinutes * 2,
-            "Th": dayInMinutes * 3,
-            "F": dayInMinutes * 4,
-            "S": dayInMinutes * 5,
-            "U": dayInMinutes * 6}
-    startTime, endTime = time_str.split('-')
-    startTime = parse_minutes(startTime)
-    endTime = parse_minutes(endTime)
-    for day in days:
-        times.insert({startTime+dayDict[day], endTime+dayDict[day]})
-    return times
-
-
-class Classie:
-    def __init__(self, classObj):
-        self.crn = classObj[0]['CRN']
-        self.times = []
-        for oneClass in classObj:
-            tempTime = parse_time(oneClass['time'], oneClass['days'])
-            for time in tempTime:
-                self.times.insert(time)
-
-
+import classie
 #def doesItFit(class1, class2):
 
 
 
 #def sort(schedule, otherClasses):
-
-
 
 
 def main():
@@ -98,8 +60,8 @@ def main():
           "wait_seats": "10"
         }
     ]
-    print(Classie(classExample))
-
+    obj = classie.Classie(classExample)
+    print(obj.times)
 
 if __name__ == '__main__':
     main()
