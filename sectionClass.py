@@ -7,6 +7,8 @@ def parse_minutes(time_str):
 
 
 def parse_time(time_str, days):
+    if "TBA" in time_str or "TBA" in days:
+        return
     times = []
     dayInMinutes = 1440
     dayDict = {
@@ -37,7 +39,8 @@ class Section:
         self.times = []
         for oneClass in classObj:
             tempTime = parse_time(oneClass['time'], oneClass['days'])
-            for time in tempTime:
-                self.times.append(time)
+            if tempTime:
+                for time in tempTime:
+                    self.times.append(time)
 
 

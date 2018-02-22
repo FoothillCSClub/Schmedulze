@@ -21,14 +21,20 @@ def findPossibleSchedule(schedule, otherClasses, possibleSchedlues):
         else:
             return False
 
-def schedulize(coursesArray):
+
+def schedulize(parsedCoursesArray):
     possibleSchedules = []
     sectionArray = []
-    coursesArray = sorted(coursesArray, key=len)
-    print(coursesArray)
-    for course in coursesArray:
-        sectionArray.append(course)
-    for section in sectionArray[0]:
+    parsedCoursesArray = sorted(parsedCoursesArray, key=len)
+    print(parsedCoursesArray)
+    for section in parsedCoursesArray[0]:
         findPossibleSchedule(section, sectionArray[1:], possibleSchedules)
     print(possibleSchedules)
 
+
+# takes in array of sections and turns them into section classes
+def buildSchedule(coursesArray):
+    # next(iter(coursesArray)) helps with getting the value of the first key
+    for course in coursesArray:
+        for section in next(iter(course)):
+            print(section)
