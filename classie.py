@@ -23,15 +23,15 @@ def parse_time(time_str, days):
     endTime = parse_minutes(endTime)
     if days.find("Th") == 1:
         addDayMin = int(dayDict["Th"])
-        times.append({startTime+addDayMin, endTime+addDayMin})
+        times.append((startTime+addDayMin, endTime+addDayMin))
         days = days.replace("Th", "")
     for day in days:
         addDayMin = int(dayDict[day])
-        times.append({startTime+addDayMin, endTime+addDayMin})
+        times.append((startTime+addDayMin, endTime+addDayMin))
     return times
 
 
-class Classie:
+class Section:
     def __init__(self, classObj):
         self.crn = classObj[0]['CRN']
         self.times = []

@@ -1,10 +1,5 @@
 import classie
-#def doesItFit(class1, class2):
-
-
-
-#def sort(schedule, otherClasses):
-
+import schedClass
 
 def main():
     classExample = [
@@ -60,8 +55,28 @@ def main():
           "wait_seats": "10"
         }
     ]
-    obj = classie.Classie(classExample)
-    print(obj.times)
+    classExample2 = [
+        {
+          "CRN": "40153", 
+          "campus": "FH", 
+          "course": "MATH F010.01Y", 
+          "days": "M", 
+          "desc": "ELEMENTARY STATISTICS", 
+          "end": "06/29/2018", 
+          "instructor": "Martinez", 
+          "room": "5502", 
+          "seats": "80", 
+          "start": "04/09/2018", 
+          "status": "Open", 
+          "time": "08:00 AM-09:30 AM", 
+          "units": "  5.00", 
+          "wait_cap": "10", 
+          "wait_seats": "10"
+            } 
+        ]
+    obj = classie.Section(classExample)
+    obj2 = classie.Section(classExample2)
+    print(schedClass.isOverLapping([obj], obj2))
 
 if __name__ == '__main__':
     main()
