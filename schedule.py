@@ -1,5 +1,5 @@
-import classie
-import schedClass
+import sectionClass
+import scheduleLogic
 
 def main():
     classExample = [
@@ -72,11 +72,28 @@ def main():
           "units": "  5.00", 
           "wait_cap": "10", 
           "wait_seats": "10"
-            } 
-        ]
-    obj = classie.Section(classExample)
-    obj2 = classie.Section(classExample2)
-    print(schedClass.isOverLapping([obj], obj2))
+        }, 
+        {
+          "CRN": "40153", 
+          "campus": "FH", 
+          "course": "MATH F010.01Y", 
+          "days": "TBA", 
+          "desc": "ELEMENTARY STATISTICS", 
+          "end": "06/29/2018", 
+          "instructor": "Martinez", 
+          "room": "ONLINE", 
+          "seats": "80", 
+          "start": "04/09/2018", 
+          "status": "Open", 
+          "time": "TBA", 
+          "units": "  5.00", 
+          "wait_cap": "10", 
+          "wait_seats": "10"
+        }
+      ]
+    obj = sectionClass.Section(classExample)
+    obj2 = sectionClass.Section(classExample2)
+    print(scheduleLogic.isOverLapping([obj], obj2))
 
 if __name__ == '__main__':
     main()

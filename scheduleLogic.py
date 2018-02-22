@@ -1,5 +1,3 @@
-import classie
-
 def isOverLapping(classArr, class2):
     newSchedule = class2.times
     for section in classArr:
