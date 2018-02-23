@@ -1,7 +1,12 @@
-def isOverLapping(classArr, class2):
-    newSchedule = class2.times
+import sectionClass
+
+
+def isOverLapping(classArr, classArr2):
+    newSchedule = []
     for section in classArr:
-        newSchedule += section.times
+        newSchedule += section.time
+    for section in classArr2:
+        newSchedule += section.time
     newSchedule = sorted(newSchedule, key=lambda x: x[0])
     print(newSchedule)
     for i in range(1, len(newSchedule) - 1):
@@ -10,31 +15,37 @@ def isOverLapping(classArr, class2):
         return False
 
 
-def findPossibleSchedule(schedule, otherClasses, possibleSchedlues):
+def findPossibleSchedule(schedule, otherClasses, possibleSchedules):
     if len(otherClasses) <= 0:
-        possibleSchedlues.append(schedule)
+        possibleSchedules.append(schedule)
         return True
-    for section in otherClasses[0]:
-        condition = isOverLapping(schedule, section)
-        if not condition:
-            return findPossibleSchedule(schedule+section, otherClasses.pop(0))
-        else:
-            return False
+    print(schedule, "\n\n", otherClasses[0])
+    condition = isOverLapping([schedule], otherClasses[0])
+    if not condition:
+        return findPossibleSchedule(schedule + otherClasses[0],
+                otherClasses.pop(0))
+    else:
+        return False
 
 
 def schedulize(parsedCoursesArray):
-    possibleSchedules = []
-    sectionArray = []
-    parsedCoursesArray = sorted(parsedCoursesArray, key=len)
     print(parsedCoursesArray)
+    possibleSchedules = []
+    print("Parsed Array:", parsedCoursesArray, "\n\n\n\n")
     for section in parsedCoursesArray[0]:
-        findPossibleSchedule(section, sectionArray[1:], possibleSchedules)
-    print(possibleSchedules)
+        findPossibleSchedule(section, parsedCoursesArray[1:],
+                possibleSchedules)
+    for section in possibleSchedules:
+        print(section, "\n")
 
 
 # takes in array of sections and turns them into section classes
 def buildSchedule(coursesArray):
-    # next(iter(coursesArray)) helps with getting the value of the first key
+    # next(iter(course.values())) helps with getting the value of the first key
+    parsedCoursesArray = []
+    coursesArray = sorted(coursesArray, key=len)
     for course in coursesArray:
-        for section in next(iter(course)):
-            print(section)
+        parsedCoursesArray.append(
+                sectionClass.Section(next(iter(course.values()))))
+    schedulize(parsedCoursesArray)
+

@@ -2,98 +2,105 @@ import sectionClass
 import scheduleLogic
 
 def main():
-    classExample = [
-        {
-          "CRN": "40203", 
-          "campus": "FH", 
-          "course": "PHYS F004A01", 
-          "days": "TTh", 
-          "desc": "GENERAL PHYSICS (CALC)", 
-          "end": "06/29/2018", 
-          "instructor": "Cascarano", 
-          "room": "4502", 
-          "seats": "28", 
-          "start": "04/09/2018", 
-          "status": "Open", 
-          "time": "10:00 AM-11:50 AM", 
-          "units": "  6.00", 
-          "wait_cap": "10", 
-          "wait_seats": "10"
-        }, 
-        {
-          "CRN": "40203", 
-          "campus": "FH", 
-          "course": "PHYS F004A01", 
-          "days": "T", 
-          "desc": "GENERAL PHYSICS (CALC)", 
-          "end": "06/29/2018", 
-          "instructor": "Low", 
-          "room": "4715", 
-          "seats": "28", 
-          "start": "04/09/2018", 
-          "status": "Open", 
-          "time": "12:00 PM-02:50 PM", 
-          "units": "  6.00", 
-          "wait_cap": "10", 
-          "wait_seats": "10"
-        }, 
-        {
-          "CRN": "40203", 
-          "campus": "FH", 
-          "course": "PHYS F004A01", 
-          "days": "F", 
-          "desc": "GENERAL PHYSICS (CALC)", 
-          "end": "06/29/2018", 
-          "instructor": "Cascarano", 
-          "room": "4502", 
-          "seats": "28", 
-          "start": "04/09/2018", 
-          "status": "Open", 
-          "time": "11:00 AM-11:50 AM", 
-          "units": "  6.00", 
-          "wait_cap": "10", 
-          "wait_seats": "10"
-        }
-    ]
-    classExample2 = [
-        {
-          "CRN": "40153", 
-          "campus": "FH", 
-          "course": "MATH F010.01Y", 
-          "days": "M", 
-          "desc": "ELEMENTARY STATISTICS", 
-          "end": "06/29/2018", 
-          "instructor": "Martinez", 
-          "room": "5502", 
-          "seats": "80", 
-          "start": "04/09/2018", 
-          "status": "Open", 
-          "time": "08:00 AM-09:30 AM", 
-          "units": "  5.00", 
-          "wait_cap": "10", 
-          "wait_seats": "10"
-        }, 
-        {
-          "CRN": "40153", 
-          "campus": "FH", 
-          "course": "MATH F010.01Y", 
-          "days": "TBA", 
-          "desc": "ELEMENTARY STATISTICS", 
-          "end": "06/29/2018", 
-          "instructor": "Martinez", 
-          "room": "ONLINE", 
-          "seats": "80", 
-          "start": "04/09/2018", 
-          "status": "Open", 
-          "time": "TBA", 
-          "units": "  5.00", 
-          "wait_cap": "10", 
-          "wait_seats": "10"
-        }
-      ]
-    obj = sectionClass.Section(classExample)
-    obj2 = sectionClass.Section(classExample2)
-    print(scheduleLogic.isOverLapping([obj], obj2))
+    class1 = {
+          "40140": [
+            {
+              "CRN": "40140", 
+              "campus": "FH", 
+              "course": "ENGL F001A01", 
+              "days": "MW", 
+              "desc": "COMPOSITION & READING", 
+              "end": "06/29/2018", 
+              "instructor": "Bachman", 
+              "room": "6305", 
+              "seats": "30", 
+              "start": "04/09/2018", 
+              "status": "Open", 
+              "time": "07:35 AM-09:50 AM", 
+              "units": "  5.00", 
+              "wait_cap": "15", 
+              "wait_seats": "15"
+            }
+          ], 
+          "40141": [
+            {
+              "CRN": "40141", 
+              "campus": "FH", 
+              "course": "ENGL F001A03", 
+              "days": "MW", 
+              "desc": "COMPOSITION & READING", 
+              "end": "06/29/2018", 
+              "instructor": "Mills", 
+              "room": "6409", 
+              "seats": "30", 
+              "start": "04/09/2018", 
+              "status": "Open", 
+              "time": "08:00 AM-09:50 AM", 
+              "units": "  5.00", 
+              "wait_cap": "15", 
+              "wait_seats": "15"
+            }, 
+            {
+              "CRN": "40141", 
+              "campus": "FH", 
+              "course": "ENGL F001A03", 
+              "days": "F", 
+              "desc": "COMPOSITION & READING", 
+              "end": "06/29/2018", 
+              "instructor": "Mills", 
+              "room": "6409", 
+              "seats": "30", 
+              "start": "04/09/2018", 
+              "status": "Open", 
+              "time": "08:00 AM-08:50 AM", 
+              "units": "  5.00", 
+              "wait_cap": "15", 
+              "wait_seats": "15"
+            }
+          ]}
 
+    class2 = { 
+        "40269": [
+            {
+              "CRN": "40269", 
+              "campus": "FH", 
+              "course": "ENGL F001B01", 
+              "days": "MW", 
+              "desc": "COMP/CRIT READ/THINK LITERATUR", 
+              "end": "06/29/2018", 
+              "instructor": "Armerding", 
+              "room": "6401", 
+              "seats": "30", 
+              "start": "04/09/2018", 
+              "status": "Open", 
+              "time": "07:35 AM-09:50 AM", 
+              "units": "  5.00", 
+              "wait_cap": "15", 
+              "wait_seats": "15"
+            }
+          ], 
+        "40270": [
+            {
+              "CRN": "40270", 
+              "campus": "FH", 
+              "course": "ENGL F001B02", 
+              "days": "TTh", 
+              "desc": "COMP/CRIT READ/THINK LITERATUR", 
+              "end": "06/29/2018", 
+              "instructor": "Goldstone", 
+              "room": "6405", 
+              "seats": "30", 
+              "start": "04/09/2018", 
+              "status": "Open", 
+              "time": "07:35 AM-09:50 AM", 
+              "units": "  5.00", 
+              "wait_cap": "15", 
+              "wait_seats": "15"
+            }
+          ]} 
+
+    classes = [class1, class2]
+    scheduleLogic.buildSchedule(classes)
+    
 if __name__ == '__main__':
     main()
