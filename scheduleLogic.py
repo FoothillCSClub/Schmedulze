@@ -29,7 +29,9 @@ def findPossibleSchedule(schedule, otherClasses, possibleSchedules):
 
 
 def schedulize(parsedCoursesArray):
-    print(parsedCoursesArray)
+    for course in parsedCoursesArray:
+        for section in course:
+            print(section.crn)
     possibleSchedules = []
     print("Parsed Array:", parsedCoursesArray, "\n\n\n\n")
     for section in parsedCoursesArray[0]:
@@ -43,9 +45,13 @@ def schedulize(parsedCoursesArray):
 def buildSchedule(coursesArray):
     # next(iter(course.values())) helps with getting the value of the first key
     parsedCoursesArray = []
-    coursesArray = sorted(coursesArray, key=len)
+    coursesArray = sorted(coursesArray, key=lambda k: len(k.keys()))
+    print("Sorted List:\n") 
     for course in coursesArray:
-        parsedCoursesArray.append(
-                sectionClass.Section(next(iter(course.values()))))
+        print(course, "\n")
+        sectionsArray = []
+        for key, value in course.items():
+            sectionsArray.append(sectionClass.Section(value))
+        parsedCoursesArray.append(sectionsArray)
     schedulize(parsedCoursesArray)
 

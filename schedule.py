@@ -1,5 +1,5 @@
-import sectionClass
 import scheduleLogic
+
 
 def main():
     class1 = {
@@ -60,26 +60,7 @@ def main():
           ]}
 
     class2 = { 
-        "40269": [
-            {
-              "CRN": "40269", 
-              "campus": "FH", 
-              "course": "ENGL F001B01", 
-              "days": "MW", 
-              "desc": "COMP/CRIT READ/THINK LITERATUR", 
-              "end": "06/29/2018", 
-              "instructor": "Armerding", 
-              "room": "6401", 
-              "seats": "30", 
-              "start": "04/09/2018", 
-              "status": "Open", 
-              "time": "07:35 AM-09:50 AM", 
-              "units": "  5.00", 
-              "wait_cap": "15", 
-              "wait_seats": "15"
-            }
-          ], 
-        "40270": [
+            "40270": [
             {
               "CRN": "40270", 
               "campus": "FH", 
@@ -97,10 +78,11 @@ def main():
               "wait_cap": "15", 
               "wait_seats": "15"
             }
-          ]} 
+            ]}
 
     classes = [class1, class2]
-    scheduleLogic.buildSchedule(classes)
-    
+    scheduleLogic.buildSchedule(classes)   
+
+
 if __name__ == '__main__':
     main()
