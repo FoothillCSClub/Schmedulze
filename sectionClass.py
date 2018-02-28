@@ -45,3 +45,6 @@ class Section:
 
     def __str__(self):
         return self.crn
+
+    def __repr__(self):
+        return self.crn

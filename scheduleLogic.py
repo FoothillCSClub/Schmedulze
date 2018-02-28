@@ -23,17 +23,18 @@ def isOverLapping(classArr, classArr2):
 def findPossibleSchedule(schedule: list, otherCourses: list, possibleSchedules: list):
 
     if len(otherCourses) == 0:
-        print(schedule)
         possibleSchedules.append(schedule)
         return
 
     for section in otherCourses[0]:
-        if not isOverLapping(schedule, section):
-            print(type(schedule), type(section))
-            schedule.append(section)
-            print(schedule)
+
+        cur_schedule = list(schedule)
+
+        if not isOverLapping(cur_schedule, section):
+            cur_schedule.append(section)
+
             findPossibleSchedule(
-                schedule,
+                cur_schedule,
                 otherCourses[1:],
                 possibleSchedules
             )
@@ -48,8 +49,7 @@ def schedulize(parsedCoursesArray):
     print("\n\n")
 
     for section in parsedCoursesArray[0]:
-        sectionArr = []
-        sectionArr.append(section)
+        sectionArr = [section]
         findPossibleSchedule(
             sectionArr,
             parsedCoursesArray[1:],
