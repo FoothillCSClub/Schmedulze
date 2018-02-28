@@ -43,4 +43,5 @@ class Section:
                 for time in tempTime:
                     self.times.append(time)
 
-
+    def __str__(self):
+        return self.crn

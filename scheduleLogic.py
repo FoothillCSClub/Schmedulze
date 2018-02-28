@@ -12,42 +12,52 @@ def isOverLapping(classArr, classArr2):
             return True
         return False
 
+"""
+@schedule: list of sections which we try to fill with one section from
+           each course in @otherCourses. Initially contains one section,
+           passed in from schedulize()
+@otherCourses: list of courses which we try to schedule
+@possibleSchedules: call by reference output parameter; hopefully we
+                    populate it with a list of possible schedules.
+"""
+def findPossibleSchedule(schedule: list, otherCourses: list, possibleSchedules: list):
 
-def findPossibleSchedule(schedule, otherCourses, possibleSchedules):
-    if len(otherCourses) <= 0:
+    if len(otherCourses) == 0:
         print(schedule)
-        if schedule == False :
-            return False
         possibleSchedules.append(schedule)
-        return True
-    for section in otherCourses[0]:
-        condition = isOverLapping(schedule, section)
-        if not condition:
-            print(type(schedule), type(section))
-            schedule = schedule.extend(section)
-            print(schedule)
-            findPossibleSchedule(schedule,
-            otherCourses[1:], possibleSchedules)
-        else:
-            findPossibleSchedule(False, [], [])
-    return
+        return
 
+    for section in otherCourses[0]:
+        if not isOverLapping(schedule, section):
+            print(type(schedule), type(section))
+            schedule.append(section)
+            print(schedule)
+            findPossibleSchedule(
+                schedule,
+                otherCourses[1:],
+                possibleSchedules
+            )
 
 def schedulize(parsedCoursesArray):
     possibleSchedules = []
+
     for course in parsedCoursesArray:
         print("\n------New Course------\n")
         for section in course:
             print("Section CRN:", section)
     print("\n\n")
+
     for section in parsedCoursesArray[0]:
         sectionArr = []
         sectionArr.append(section)
-        findPossibleSchedule(sectionArr, parsedCoursesArray[1:],
-                copy.deepcopy(possibleSchedules))
+        findPossibleSchedule(
+            sectionArr,
+            parsedCoursesArray[1:],
+            possibleSchedules
+        )
+
     for schedule in possibleSchedules:
         print("possible schdule ", schedule)
-
 
 # takes in array of sections and turns them into section classes
 def buildSchedule(coursesArray):
