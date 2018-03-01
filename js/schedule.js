@@ -71,7 +71,7 @@ class Section
 			var timeOfClass = parse_time(section["time"], section["days"])
 			if(timeOfClass)
 			{
-				timeTemp.push(timeOfClass)
+				timeTemp = timeTemp.concat(timeOfClass)
 			}
 		})
 		this.time = timeTemp
@@ -89,9 +89,41 @@ function isOverLapping(cur_schedule, addClass)
 	newSchedule = []
 	for(section in cur_schedule)
 	{
-		newSchedule.push(cur_schedule[section].times)
+		newSchedule.push(cur_schedule[section].time)
 	}
-	newSchedule.push(addClass.times)
+	newSchedule.push(addClass.time)
+	newSchedule.sort(function(class1, class2)
+		{
+			return class1.times - class2.times
+		})
+	console.log("wow fuck",cur_schedule, addClass)
+	for(var i = 1; i < newSchedule.length ; ++i)
+	{
+		if(newSchedule[i-1][1] > newSchedule[i][0])
+		{
+			return true
+		}
+	}
+	return false
+}
+
+function findPossibleSchedule(cur_schedule, otherCourses, possibleSchedules)
+{
+	if(otherCourses.length == 0)
+	{
+		console.log("it done been pushed boys")
+		possibleSchedules.push(cur_schedule)
+		return
+	}
+	for(section in otherCourses["0"])
+	{
+		if(!isOverLapping(cur_schedule, otherCourses["0"][section]))
+		{
+			cur_schedule.push(otherCourses["0"][section])
+			otherCourses.shift()
+			findPossibleSchedule(cur_schedule, otherCourses, possibleSchedules)
+		}
+	}
 }
 
 function buildSchedule(coursesInput)
@@ -110,8 +142,10 @@ function buildSchedule(coursesInput)
 		}
 		parsedCoursesArray.push(courseArray)
 	}
-	console.log(parsedCoursesArray)
-	//schedulize(parsedCoursesArray)
+	console.log("Courses List: ", parsedCoursesArray)
+	possibleSchedules = []
+	findPossibleSchedule([],parsedCoursesArray,possibleSchedules)
+	console.log("possible Schedules", possibleSchedules)
 }
 //LOGIC ---------------------------------------------------------------
 
