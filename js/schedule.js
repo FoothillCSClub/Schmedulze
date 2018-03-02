@@ -96,7 +96,6 @@ function isOverLapping(cur_schedule, addClass)
 		{
 			return class1.times - class2.times
 		})
-	console.log("wow fuck",cur_schedule, addClass)
 	for(var i = 1; i < newSchedule.length ; ++i)
 	{
 		if(newSchedule[i-1][1] > newSchedule[i][0])
@@ -111,17 +110,20 @@ function findPossibleSchedule(cur_schedule, otherCourses, possibleSchedules)
 {
 	if(otherCourses.length == 0)
 	{
-		console.log("it done been pushed boys")
+		console.log(cur_schedule,"has been pushed")
 		possibleSchedules.push(cur_schedule)
 		return
 	}
 	for(section in otherCourses["0"])
 	{
+		console.log("wow fuck",cur_schedule, otherCourses["0"][section])
 		if(!isOverLapping(cur_schedule, otherCourses["0"][section]))
 		{
-			cur_schedule.push(otherCourses["0"][section])
-			otherCourses.shift()
-			findPossibleSchedule(cur_schedule, otherCourses, possibleSchedules)
+			var cur_scheduleCopy = cur_schedule
+			cur_scheduleCopy.push(otherCourses["0"][section])
+			var otherCoursesCopy = otherCourses
+			otherCoursesCopy.shift()
+			findPossibleSchedule(cur_scheduleCopy, otherCoursesCopy, possibleSchedules)
 		}
 	}
 }
