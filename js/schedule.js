@@ -110,20 +110,18 @@ function findPossibleSchedule(cur_schedule, otherCourses, possibleSchedules)
 {
 	if(otherCourses.length == 0)
 	{
-		console.log(cur_schedule,"has been pushed")
 		possibleSchedules.push(cur_schedule)
 		return
 	}
-	for(section in otherCourses["0"])
+	for(var section = 0 ; section < otherCourses["0"].length ; ++section)
 	{
-		console.log("wow fuck",cur_schedule, otherCourses["0"][section])
+		let section_ = section.toString()
 		if(!isOverLapping(cur_schedule, otherCourses["0"][section]))
 		{
-			var cur_scheduleCopy = cur_schedule
-			cur_scheduleCopy.push(otherCourses["0"][section])
-			var otherCoursesCopy = otherCourses
-			otherCoursesCopy.shift()
-			findPossibleSchedule(cur_scheduleCopy, otherCoursesCopy, possibleSchedules)
+			let copySchedule = cur_schedule.slice(0)
+			copySchedule.push(otherCourses["0"][section])
+			let restOfCourses = otherCourses.slice(1,otherCourses.length)
+			findPossibleSchedule(copySchedule, restOfCourses, possibleSchedules)
 		}
 	}
 }
