@@ -3,7 +3,7 @@ function parse_minutes(time_str)
 {
 	var hour = time_str.substring(0,2)
 	var min = time_str.substring(3,5)
-	var time = parseInt(hour) * 60 + parseInt(min)
+	var time = (parseInt(hour) % 12) * 60 + parseInt(min)
 	if(time_str.substring(6,8) == "PM")
 	{
 		return time + 720
